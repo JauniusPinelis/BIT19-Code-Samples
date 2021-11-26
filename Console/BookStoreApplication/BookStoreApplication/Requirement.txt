@@ -1,0 +1,26 @@
+﻿A console application for storing the books:
+
+A book should have:
+Title: string
+Description: string
+Amount: number
+
+The bookstore should have the following commands:
+Add: 
+	"Please enter the title":
+	<title>
+	"Please enter the Description":
+	<Description>
+	"Please enter the Amount":
+	<Amount>
+
+List:
+It should output all the info about the books.
+foreach -> "title: {title}, description: {description, amount: {Amount}"
+
+
+Additional optional requirements:
+0. Delete all books functionality: "Delete Harry Potter"
+Use String.Split
+1. Only allow unique names in the store.
+2. Place the code in github.

@@ -4,8 +4,6 @@ Each Todo should have:
 	Description: String,
 	Completed: Boolean
 
-There should not be several todos with the same name;
-
 Possible commands:
 Add -> 
 	"Enter todo name"
