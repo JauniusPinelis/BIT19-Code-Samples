@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{2467BCE4-1182-4D26-8AFA-10D1A91F0C44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithLists", "WorkingWithLists\WorkingWithLists.csproj", "{CFD91765-E0D5-498D-8DF9-FB34ECF9BBD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithLists", "WorkingWithLists\WorkingWithLists.csproj", "{CFD91765-E0D5-498D-8DF9-FB34ECF9BBD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApplication", "TodoApplication\TodoApplication.csproj", "{63489194-0EDF-4D95-8389-09B97616515F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CFD91765-E0D5-498D-8DF9-FB34ECF9BBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFD91765-E0D5-498D-8DF9-FB34ECF9BBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD91765-E0D5-498D-8DF9-FB34ECF9BBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63489194-0EDF-4D95-8389-09B97616515F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63489194-0EDF-4D95-8389-09B97616515F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63489194-0EDF-4D95-8389-09B97616515F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63489194-0EDF-4D95-8389-09B97616515F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
