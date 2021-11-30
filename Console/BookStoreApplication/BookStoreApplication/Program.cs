@@ -5,7 +5,7 @@ var bookStoreConsole = new BookStoreConsole();
 
 while (true)
 {
-    Console.WriteLine("Please enter the command: 'Add' or 'List'");
+    Console.WriteLine("Please enter the command: 'Add','List','Update'");
 
     var command = Console.ReadLine();
 
@@ -19,6 +19,9 @@ while (true)
             break;
         case "Remove":
             bookStoreConsole.ExecuteRemove();
+            break;
+        case "Update":
+            bookStoreConsole.ExecuteUpdate();
             break;
 
         default:

@@ -1,4 +1,6 @@
-﻿namespace BookStoreApplication
+﻿using BookStoreApplication.Model;
+
+namespace BookStoreApplication
 {
     public class BookStoreConsole
     {
@@ -35,6 +37,31 @@
                 Console.WriteLine("Something bad has happened, please try again");
                 //continue
             }
+        }
+
+        public void ExecuteUpdate()
+        {
+            Console.WriteLine("Please enter the title of the book you want to update");
+
+            var title = Console.ReadLine();
+
+            Console.WriteLine("please enter the new title");
+            var newTitle = Console.ReadLine();
+
+            Console.WriteLine("please enter the new description");
+            var description = Console.ReadLine();
+
+            Console.WriteLine("please enter the new amount");
+            var amount = Convert.ToInt32(Console.ReadLine());
+
+            var updateInfo = new Book()
+            {
+                Amount = amount,
+                Description = description,
+                Title = newTitle
+            };
+
+            _bookStore.Update(title, updateInfo);
         }
 
         public void ExecuteList()

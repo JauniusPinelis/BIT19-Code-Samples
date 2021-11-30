@@ -31,6 +31,20 @@ namespace BookStoreApplication
             return _books;
         }
 
+        public void Update(string title, Book updateInfo)
+        {
+            var book = _books.SingleOrDefault(b => b.Title == title);
+
+            if (book == null)
+            {
+                throw new ArgumentException("Book was not found");
+            }
+
+            book.Title = updateInfo.Title;
+            book.Description = updateInfo.Description;
+            book.Amount = updateInfo.Amount;
+        }
+
         public void Remove(string title)
         {
             _books = _books.Where(b => b.Title != title).ToList();
