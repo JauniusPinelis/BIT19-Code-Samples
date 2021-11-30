@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using WorkingWithLists.Models;
 
@@ -34,7 +33,7 @@ namespace WorkingWithLists
             todos.Add(todo3);
 
             // forEach -> forEach
-            todos.ForEach(todo => todo.Description = "");
+            todos.Where(t => !t.Completed).ToList().ForEach(todo => todo.Description = "");
             // filter -> Where
             todos = todos.Where(t => t.Completed == true).ToList();
             // Map -> Select
