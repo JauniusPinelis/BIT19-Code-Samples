@@ -7,9 +7,9 @@ The Shop will be for ShopItem.
 Prices will be Integers;
 The shop sells the following items:
 Name		Price(in Euros)		Quantity
-Ice cream	2					4
+IceCream	2					4
 Candy		1					4
-Apple pie	3					4
+ApplePie	3					4
 
 We will have a single Buyer who has 10 euros
 
