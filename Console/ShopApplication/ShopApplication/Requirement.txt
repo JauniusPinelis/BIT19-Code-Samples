@@ -1,0 +1,29 @@
+﻿We will be creating an application for shop.
+
+The shop will be similar to the warehouse project we have developed before.
+It will include Buy functionality;
+
+The Shop will be for ShopItem.
+Prices will be Integers;
+The shop sells the following items:
+Name		Price(in Euros)		Quantity
+Ice cream	2					4
+Candy		1					4
+Apple pie	3					4
+
+We will have a single Buyer who has 10 euros
+
+We should have the following commands:
+
+'Buy Ice cream 5' -> It should allow buying ice cream if Buyer has enough money and enough stock. 
+Buy command should update the quantity.
+The last number will be quantity.
+
+'Show balance' -> display how much money the users has.
+
+'List items' -> display items with updated quantities. It should not list items which have quantity 0.
+
+
+Non functional requirements:
+We should have classes: ShopItem.cs, Shop.cs (optional -> Buyer.cs)
+
