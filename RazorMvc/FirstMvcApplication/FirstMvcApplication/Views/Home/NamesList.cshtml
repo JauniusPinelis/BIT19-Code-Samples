@@ -1,0 +1,7 @@
+﻿@model NamesListModel
+
+<ul>  
+@foreach(var personModel in @Model.Persons){
+    <li>@personModel.Name</li>
+}
+ </ul>

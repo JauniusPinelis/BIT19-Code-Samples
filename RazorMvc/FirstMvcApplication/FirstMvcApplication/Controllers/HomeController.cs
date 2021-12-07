@@ -1,4 +1,5 @@
 ﻿using FirstMvcApplication.Models;
+using FirstMvcApplication.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -8,10 +9,12 @@ namespace FirstMvcApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly DataService _dataService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DataService dataService)
         {
             _logger = logger;
+            _dataService = dataService;
         }
 
         public IActionResult Index()
@@ -43,8 +46,19 @@ namespace FirstMvcApplication.Controllers
         // will received filled model and will save to file
         public IActionResult SendSubmitData(PersonModel model)
         {
-            System.IO.File.WriteAllText("test.txt", model.Name);
+            _dataService.Add(model);
             return RedirectToAction("DisplaySubmitData");
+        }
+
+        public IActionResult NamesList()
+        {
+            var persons = _dataService.GetAll();
+
+            var personList = new NamesListModel()
+            {
+                Persons = persons
+            };
+            return View(personList);
         }
 
         public IActionResult Privacy()

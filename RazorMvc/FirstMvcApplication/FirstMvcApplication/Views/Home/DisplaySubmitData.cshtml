@@ -1,10 +1,8 @@
 ﻿@model PersonModel
 
- 
-
 @using (Html.BeginForm("SendSubmitData", "Home", FormMethod.Post))
 {
-    @Html.DisplayFor(a => a.Name)
+    @Html.LabelFor(a => a.Name)
     @Html.TextBoxFor(a => a.Name)
         
     <input type="submit" value="Submit"/>
