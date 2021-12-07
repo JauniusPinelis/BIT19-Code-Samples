@@ -1,0 +1,16 @@
+﻿Create a web app to be able to enter and display todo items:
+
+Todo should have Name and Description
+
+The task is to add 2 new tabs in the page:
+
+"Todo Items List" -> Lists all the todos
+
+"Add new Todo" -> Allows adding new todo.
+
+
+Extra: 
+1. Validate that non-empty todos should only be sent
+2. Remove Privacy and Home tabs 
+and web app initial load redirect to TodoList
+3. Instead of DataService -> Write and read data from text file (Advanced)
