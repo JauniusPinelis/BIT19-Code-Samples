@@ -1,1 +1,11 @@
-﻿Todo Works
+﻿@model List<Todo>
+
+<h3>Todos</h3>
+
+<ul>
+@foreach(var @todo in @Model)
+{
+    <li>@todo.Id  @todo.Name @todo.Description</li>
+
+}
+</ul>
