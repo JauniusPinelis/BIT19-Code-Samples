@@ -1,0 +1,15 @@
+﻿1. Create an application which uses EF Core and Razor Mvc technologies to display shopItems as well as Shops
+
+Shop should have Id, Name
+ShopItem should have Id, Name, ShopId, ExpiryDate (DateTime = DateTime.UtcNow)
+
+2. Application should have a page ShopItems which displays all info about items 
+as well Shop Name it belongs to.
+
+3. Data seed migration should have at least 2 shops and 5 items.
+
+
+Advanced and Optional:
+
+1. Display Shops in separate page.
+2. Program "Add Shop" and "add ShopItem" functionality.
