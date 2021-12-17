@@ -1,0 +1,12 @@
+﻿@model Todo
+
+@using (Html.BeginForm("Update", "Todo", FormMethod.Post))
+{
+    @Html.LabelFor(a => a.Name)
+    @Html.TextBoxFor(a => a.Name)
+
+    @Html.LabelFor(a => a.Description)
+    @Html.TextBoxFor(a => a.Description)
+        
+    <input type="submit" value="Submit"/>
+}

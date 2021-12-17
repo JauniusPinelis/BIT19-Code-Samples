@@ -37,5 +37,27 @@ namespace TodoListApplication.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(int id)
+        {
+            var todo = _context.Todos.Find(id);
+            _context.Todos.Remove(todo);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Update(int id)
+        {
+            var todo = _context.Todos.Find(id);
+            return View(todo);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Todo todo)
+        {
+            _context.Todos.Update(todo);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

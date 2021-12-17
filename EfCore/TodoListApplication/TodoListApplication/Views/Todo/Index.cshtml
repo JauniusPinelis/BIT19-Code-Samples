@@ -5,7 +5,10 @@
 <ul>
 @foreach(var @todo in @Model)
 {
-    <li>@todo.Id  @todo.Name @todo.Description</li>
+    <li>@todo.Id  @todo.Name @todo.Description
+        @Html.ActionLink("Update","Update", "Todo", new {id = @todo.Id } ,new { @class= "btn btn-secondary" }) 
+        @Html.ActionLink("Delete","Delete", "Todo", new {id = @todo.Id } ,new { @class= "btn btn-danger" }) 
+    </li>
 
 }
 </ul>
