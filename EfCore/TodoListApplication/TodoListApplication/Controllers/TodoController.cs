@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using TodoListApplication.Data;
@@ -19,12 +18,24 @@ namespace TodoListApplication.Controllers
         public IActionResult Index()
         {
             List<Todo> todos =
-                _context.Categories.Include(c => c.Todos) //This is required to load child objects
-                .Where(c => c.Name == "Category1")
-                .SelectMany(c => c.Todos)
+                _context.Todos //This is required to load child objects
                 .ToList();
 
             return View(todos);
+        }
+
+        public IActionResult Add()
+        {
+            var todo = new Todo();
+            return View(todo);
+        }
+
+        [HttpPost]
+        public IActionResult Add(Todo todo)
+        {
+            _context.Todos.Add(todo);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
