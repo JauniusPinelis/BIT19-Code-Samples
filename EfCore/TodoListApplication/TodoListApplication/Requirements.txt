@@ -7,9 +7,26 @@ ShopItem should have Id, Name, ShopId, ExpiryDate (DateTime = DateTime.UtcNow)
 as well Shop Name it belongs to.
 
 3. Data seed migration should have at least 2 shops and 5 items.
+----------------------------------------------------------------------
+
+4. Add new functionalities to your ShopItem:
+  - Add new Item
+  - Delete Item
+  - Update Item
+
+5. Validate that adding new item: name should be required and between 5 and 20 characters range.
 
 
 Advanced and Optional:
 
 1. Display Shops in separate page.
 2. Program "Add Shop" and "add ShopItem" functionality.
+
+-------------------------------------------------------
+
+3. Implement "Soft Delete" instead of delete
+4. Add new functionalities to your Shop:
+  - Add new Shop
+  - Delete Shop
+  - Update Shop (modify Shop to use soft-delete)
+5. Research and implement 'Generic Repository' pattern
