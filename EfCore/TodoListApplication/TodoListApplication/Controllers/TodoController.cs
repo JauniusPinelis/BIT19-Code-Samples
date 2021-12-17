@@ -33,6 +33,10 @@ namespace TodoListApplication.Controllers
         [HttpPost]
         public IActionResult Add(Todo todo)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(todo);
+            }
             _context.Todos.Add(todo);
             _context.SaveChanges();
             return RedirectToAction("Index");

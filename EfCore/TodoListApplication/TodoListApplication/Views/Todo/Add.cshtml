@@ -4,9 +4,11 @@
 {
     @Html.LabelFor(a => a.Name)
     @Html.TextBoxFor(a => a.Name)
+    @Html.ValidationMessageFor(a => a.Name)
 
     @Html.LabelFor(a => a.Description)
     @Html.TextBoxFor(a => a.Description)
+    @Html.ValidationMessageFor(a => a.Description)
         
     <input type="submit" value="Submit"/>
 }
