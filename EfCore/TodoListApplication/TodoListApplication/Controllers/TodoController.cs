@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TodoListApplication.Data;
+using TodoListApplication.Dtos;
 using TodoListApplication.Models;
 
 namespace TodoListApplication.Controllers
@@ -26,18 +27,24 @@ namespace TodoListApplication.Controllers
 
         public IActionResult Add()
         {
-            var todo = new Todo();
-            return View(todo);
+            var createTodo = new CreateTodo()
+            {
+                Todo = new Todo(),
+                AllCategories = _context.Categories.ToList(),
+            };
+            return View(createTodo);
         }
 
         [HttpPost]
-        public IActionResult Add(Todo todo)
+        public IActionResult Add(CreateTodo createTodo)
         {
             if (!ModelState.IsValid)
             {
-                return View(todo);
+                createTodo.AllCategories = _context.Categories.ToList();
+                return View(createTodo);
             }
-            _context.Todos.Add(todo);
+
+            _context.Todos.Add(createTodo.Todo);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
