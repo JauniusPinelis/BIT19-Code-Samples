@@ -17,6 +17,14 @@ as well Shop Name it belongs to.
 5. Validate that adding new item: name should be required and between 5 and 20 characters range.
 
 
+-----------------------------------------------------------------------
+
+6. Connect Shop and ShopItem with 'One to Many' relationship and allow assign Shop in Add/Edit.
+
+7. Introduce Tags (just id and name) into the system. There should be a 'many to many' relationshipp between Tag and ShopItem.
+On ShopItem create/update(update lil bit more complex), you should be able to multi-select Tags.
+
+
 Advanced and Optional:
 
 1. Display Shops in separate page.
@@ -24,9 +32,16 @@ Advanced and Optional:
 
 -------------------------------------------------------
 
+
 3. Implement "Soft Delete" instead of delete
 4. Add new functionalities to your Shop:
   - Add new Shop
   - Delete Shop
   - Update Shop (modify Shop to use soft-delete)
 5. Research and implement 'Generic Repository' pattern
+
+------------------------------------------------------
+
+6. Add Tag List/Add/Remove functionality.
+7. You have List/Add/Remove for Shops/Tags/ShopItems -> try to minimised the code used (Research c# Generics)
+8. Lecture's 'many to many' add/edit method can be improved -> find a way to improve that.
