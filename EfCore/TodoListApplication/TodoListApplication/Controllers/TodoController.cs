@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using TodoListApplication.Data;
@@ -19,8 +20,8 @@ namespace TodoListApplication.Controllers
         public IActionResult Index()
         {
             List<Todo> todos =
-                _context.Todos //This is required to load child objects
-                .ToList();
+                _context.Todos.Include(t => t.TodoTags).ThenInclude(t => t.Tag).ToList();
+            //This is required to load child objects
 
             return View(todos);
         }
@@ -31,6 +32,7 @@ namespace TodoListApplication.Controllers
             {
                 Todo = new Todo(),
                 AllCategories = _context.Categories.ToList(),
+                Tags = _context.Tags.ToList()
             };
             return View(createTodo);
         }
@@ -45,6 +47,20 @@ namespace TodoListApplication.Controllers
             }
 
             _context.Todos.Add(createTodo.Todo);
+
+            _context.SaveChanges();
+
+            // Inserting tags
+
+            foreach (var tagId in createTodo.SelectedTagIds)
+            {
+                _context.TodoTags.Add(new TodoTag()
+                {
+                    TagId = tagId,
+                    TodoId = createTodo.Todo.Id
+                });
+            }
+
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

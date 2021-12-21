@@ -13,6 +13,10 @@
     @Html.LabelFor(a => a.Todo.Category)
     @Html.DropDownListFor(a => a.Todo.CategoryId, new SelectList(@Model.AllCategories,"Id", "Name"))
     @Html.ValidationMessageFor(a => a.Todo.Category)
+
+    @Html.LabelFor(a => a.Todo.TodoTags)
+    @Html.ListBoxFor(a => a.SelectedTagIds, new SelectList(@Model.Tags,"Id", "Name"))
+    @Html.ValidationMessageFor(a => a.Todo.Category)
         
     <input type="submit" value="Submit"/>
 }
