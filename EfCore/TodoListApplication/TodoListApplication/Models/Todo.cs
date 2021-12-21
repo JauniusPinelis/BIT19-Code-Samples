@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TodoListApplication.Models
 {
@@ -10,5 +11,7 @@ namespace TodoListApplication.Models
         public Category Category { get; set; }
 
         public int? CategoryId { get; set; }
+
+        public List<TodoTag> TodoTags { get; set; }
     }
 }

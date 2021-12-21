@@ -9,6 +9,10 @@ namespace TodoListApplication.Data
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<TodoTag> TodoTags { get; set; }
+
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
@@ -16,6 +20,10 @@ namespace TodoListApplication.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TodoTag>()
+            .HasKey(bc => new { bc.TagId, bc.TodoId });
+
+
             modelBuilder.Entity<Todo>().HasData(
                 new Todo()
                 {
