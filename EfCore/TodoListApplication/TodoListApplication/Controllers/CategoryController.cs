@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TodoListApplication.Data;
 using TodoListApplication.Dtos;
 using TodoListApplication.Models;
+using TodoListApplication.Repositories;
 
 namespace TodoListApplication.Controllers
 {
     public class CategoryController : Controller
     {
 
-        private DataContext _context;
+        private CategoryRepository _categoryRepository;
 
-        public CategoryController(DataContext context)
+        public CategoryController(CategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         public IActionResult Add()
@@ -29,12 +29,8 @@ namespace TodoListApplication.Controllers
                 Name = createCategory.Name,
             };
 
-            category.Created = System.DateTime.Now;
-            category.LastModified = System.DateTime.Now;
+            _categoryRepository.Create(category);
 
-            _context.Categories.Add(category);
-
-            _context.SaveChanges();
 
             return RedirectToAction("Add");
         }

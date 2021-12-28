@@ -1,23 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using TodoListApplication.Data;
+﻿using TodoListApplication.Data;
 using TodoListApplication.Models;
 
 namespace TodoListApplication.Repositories
 {
-    public class TagRepository
+    public class TagRepository : RepositoryBase<Tag>
     {
-        private DataContext _context;
 
-        public TagRepository(DataContext context)
+        public TagRepository(DataContext context) : base(context)
         {
-            _context = context;
         }
 
-        public List<Tag> GetAll()
-        {
-            //Filter out isDeleted
-            return _context.Tags.ToList();
-        }
+
     }
 }

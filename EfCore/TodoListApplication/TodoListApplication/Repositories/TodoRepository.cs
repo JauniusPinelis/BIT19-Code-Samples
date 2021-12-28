@@ -6,34 +6,22 @@ using TodoListApplication.Models;
 
 namespace TodoListApplication.Repositories
 {
-    public class TodoRepository
+    public class TodoRepository : RepositoryBase<Todo>
     {
-        private DataContext _context;
 
-        public TodoRepository(DataContext context)
+        public TodoRepository(DataContext context) : base(context)
         {
-            _context = context;
+
         }
 
-        public List<Todo> GetAll()
+        public new List<Todo> GetAll()
         {
-            //Filter out isDeleted
-            return _context.Todos.Include(t => t.Category).ToList();
+            return _context.Todos.Include(i => i.Category).Include(i => i.TodoTags).ThenInclude(tt => tt.Tag).ToList();
         }
 
-        public Todo GetById(int id)
+        public void Create(Todo todo, List<int> tagsIds)
         {
-            return _context.Todos.FirstOrDefault(t => t.Id == id);
-        }
-
-        public void Add(Todo todo, List<int> tagsIds)
-        {
-            todo.Created = System.DateTime.Now;
-            todo.LastModified = System.DateTime.Now;
-
-            _context.Add(todo);
-
-            _context.SaveChanges();
+            base.Create(todo);
 
             foreach (var tagId in tagsIds)
             {
@@ -43,25 +31,6 @@ namespace TodoListApplication.Repositories
                     TodoId = todo.Id
                 });
             }
-
-            _context.SaveChanges();
-        }
-
-        public void Update(Todo todo)
-        {
-            todo.LastModified = System.DateTime.Now;
-
-            _context.Update(todo);
-
-            _context.SaveChanges();
-        }
-
-        public void Delete(int todoId)
-        {
-            var todo = GetById(todoId);
-            // impletent soft delete
-
-            _context.Remove(todo);
 
             _context.SaveChanges();
         }

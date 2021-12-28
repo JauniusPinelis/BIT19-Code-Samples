@@ -43,7 +43,7 @@ namespace TodoListApplication.Controllers
                 return View(createTodo);
             }
 
-            _todoRepository.Add(createTodo.Todo, createTodo.SelectedTagIds);
+            _todoRepository.Create(createTodo.Todo, createTodo.SelectedTagIds);
 
 
             return RedirectToAction("Index");

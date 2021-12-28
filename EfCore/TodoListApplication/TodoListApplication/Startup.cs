@@ -24,6 +24,8 @@ namespace TodoListApplication
             var defaultConnection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DataContext>(d => d.UseSqlServer(defaultConnection));
             services.AddTransient<TodoRepository>();
+            services.AddTransient<CategoryRepository>();
+            services.AddTransient<TagRepository>();
             services.AddControllersWithViews();
         }
 
