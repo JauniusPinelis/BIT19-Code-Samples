@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TodoListApplication.Data;
+using TodoListApplication.Repositories;
 
 namespace TodoListApplication
 {
@@ -22,6 +23,7 @@ namespace TodoListApplication
         {
             var defaultConnection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DataContext>(d => d.UseSqlServer(defaultConnection));
+            services.AddTransient<TodoRepository>();
             services.AddControllersWithViews();
         }
 

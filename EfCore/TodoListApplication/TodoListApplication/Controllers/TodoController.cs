@@ -1,29 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using TodoListApplication.Data;
 using TodoListApplication.Dtos;
 using TodoListApplication.Models;
+using TodoListApplication.Repositories;
 
 namespace TodoListApplication.Controllers
 {
     public class TodoController : Controller
     {
-        private DataContext _context;
+        private TodoRepository _todoRepository;
+        private CategoryRepository _categoryRepository;
+        private TagRepository _tagRepository;
 
-        public TodoController(DataContext context)
+        public TodoController(TodoRepository todoRepository, CategoryRepository categoryRepository, TagRepository tagRepository)
         {
-            _context = context;
+            _todoRepository = todoRepository;
+            _categoryRepository = categoryRepository;
+            _tagRepository = tagRepository;
         }
 
         public IActionResult Index()
         {
-            List<Todo> todos =
-                _context.Todos.Include(t => t.TodoTags).ThenInclude(t => t.Tag).ToList();
-            //This is required to load child objects
-
-            return View(todos);
+            return View(_todoRepository.GetAll());
         }
 
         public IActionResult Add()
@@ -31,8 +28,8 @@ namespace TodoListApplication.Controllers
             var createTodo = new CreateTodo()
             {
                 Todo = new Todo(),
-                AllCategories = _context.Categories.ToList(),
-                Tags = _context.Tags.ToList()
+                AllCategories = _categoryRepository.GetAll(),
+                Tags = _tagRepository.GetAll()
             };
             return View(createTodo);
         }
@@ -42,49 +39,36 @@ namespace TodoListApplication.Controllers
         {
             if (!ModelState.IsValid)
             {
-                createTodo.AllCategories = _context.Categories.ToList();
+                createTodo.AllCategories = _categoryRepository.GetAll();
                 return View(createTodo);
             }
 
-            _context.Todos.Add(createTodo.Todo);
+            _todoRepository.Add(createTodo.Todo, createTodo.SelectedTagIds);
 
-            _context.SaveChanges();
 
-            // Inserting tags
-
-            foreach (var tagId in createTodo.SelectedTagIds)
-            {
-                _context.TodoTags.Add(new TodoTag()
-                {
-                    TagId = tagId,
-                    TodoId = createTodo.Todo.Id
-                });
-            }
-
-            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
         {
-            var todo = _context.Todos.Find(id);
-            _context.Todos.Remove(todo);
-            _context.SaveChanges();
+            _todoRepository.Delete(id);
+
             return RedirectToAction("Index");
         }
 
         public IActionResult Update(int id)
         {
-            var todo = _context.Todos.Find(id);
+            var todo = _todoRepository.GetById(id);
             return View(todo);
         }
 
         [HttpPost]
         public IActionResult Update(Todo todo)
         {
-            _context.Todos.Update(todo);
-            _context.SaveChanges();
+            _todoRepository.Update(todo);
             return RedirectToAction("Index");
         }
+
+
     }
 }
