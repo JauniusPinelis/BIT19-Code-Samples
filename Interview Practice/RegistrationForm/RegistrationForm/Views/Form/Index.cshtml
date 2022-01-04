@@ -1,0 +1,24 @@
+﻿@model Form
+ @using (Html.BeginForm("Submit", "Form", FormMethod.Post))
+    {
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Registracijos požymiai</th>
+          <th scope="col">Reikšmė</th>
+        </tr>
+      </thead>
+      <tbody>
+          @for(int i = 0; i < @Model.Questions.Count(); i++)
+          {
+            <tr>
+                @Html.HiddenFor(m => @Model.Questions[i].Id)
+              <td>@Model.Questions[i].Title</td>
+              <td>@Html.DropDownListFor(q => @Model.Questions[i].AnswerId, new SelectList(@Model.Questions[i].PossibleAnswers, "Id", "Title"), "" , new { @class="dropdown" })</td>
+            </tr>
+          }
+          <tr><td><input type="submit" value="Submit"/></td></tr>
+   
+      </tbody>
+    </table>
+}
