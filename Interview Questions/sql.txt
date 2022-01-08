@@ -1,0 +1,2 @@
+1. Describe Advantages and Disadvantages of EF core vs pure SQL and vice verca.
+2. What is Primary Key and why is it needed?

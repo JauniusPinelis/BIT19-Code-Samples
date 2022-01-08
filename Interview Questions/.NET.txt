@@ -1,0 +1,6 @@
+1. What is Constructor?
+2. What are Access Modified? Public/Private/protected
+3. What is Object Oriented programming?
+4. What is 'Static' keyword in c#?
+5. 'void' is used with methods? What does void mean?
+6. What is the difference between Class and Object?
