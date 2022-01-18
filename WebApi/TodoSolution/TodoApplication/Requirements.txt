@@ -1,0 +1,24 @@
+﻿We will be creating a web api for schools and student management:
+
+This will be a WebApi (so we will not need to create views)
+
+School Schema:
+Name: String,
+Created: Date
+
+Students:
+Name
+Sex (Can be Male, Female, NotSpecified) (this is just a String)
+SchoolId
+
+Main Functionalities:
+1. Be able to to Get, Create, Delete, Update  Schoold and Students (Typical crud)
+2. All functionalities must be tested and testable with Postman
+
+Advanced (and optional)
+1. Models should not be exposed to web api! Dtos should be used.
+2. Introduce Ok(), NotFound(), Created() to the system. (IActionREsult)
+https://exceptionnotfound.net/http-status-codes-in-asp-net-web-api-a-guided-tour/
+https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-6.0
+3. Change Sex to be Schema in Database
+4. Validation (with ModelState) (Name cannot be empty and length must be longer than 3 characters)
