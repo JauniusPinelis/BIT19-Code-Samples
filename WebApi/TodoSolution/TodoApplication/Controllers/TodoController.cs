@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TodoApplication.Data;
+using TodoApplication.Dtos;
 using TodoApplication.Models;
 
 namespace TodoApplication.Controllers
@@ -21,42 +18,69 @@ namespace TodoApplication.Controllers
         }
 
         [HttpGet]
-        public List<Todo> GetAll()
+        public IActionResult GetAll()
         {
-            return _dataContext.Todos.ToList();
+            return Ok(_dataContext.Todos.ToList());
         }
 
         [HttpGet("{id}")]
-        public Todo GetById(int id)
+        public IActionResult GetById(int id)
         {
-            return _dataContext.Todos.Find(id);
+            var todo = _dataContext.Todos.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
 
         [HttpPost]
-        public void Create(Todo todo)
+        public IActionResult Create(CreateTodo createTodo)
         {
-            _dataContext.Todos.Add(todo);
+            var model = new Todo
+            {
+                Name = createTodo.Name
+            };
+
+            _dataContext.Todos.Add(model);
             _dataContext.SaveChanges();
+
+            return Created("", model);
         }
 
         [HttpPut("{id}")]
-        public void Update(int id, Todo todoUpdate)
+        public IActionResult Update(int id, UpdateTodo todoUpdate)
         {
+            if (ModelState.ErrorCount > 0)
+            {
+                return BadRequest(ModelState);
+            }
+
             var todo = _dataContext.Todos.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
 
             todo.Name = todoUpdate.Name;
 
             _dataContext.SaveChanges();
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             var todo = _dataContext.Todos.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
             _dataContext.Remove(todo);
             _dataContext.SaveChanges();
+
+            return NoContent();
         }
     }
-
-    
 }
