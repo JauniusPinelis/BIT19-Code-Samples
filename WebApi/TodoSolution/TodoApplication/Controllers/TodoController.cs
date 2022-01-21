@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using TodoApplication.Data;
 using TodoApplication.Dtos;
-using TodoApplication.Models;
+using TodoApplication.Services;
 
 namespace TodoApplication.Controllers
 {
@@ -11,10 +12,12 @@ namespace TodoApplication.Controllers
     public class TodoController : ControllerBase
     {
         private readonly DataContext _dataContext;
+        private TodoService _todoService;
 
-        public TodoController(DataContext dataContext)
+        public TodoController(DataContext dataContext, TodoService todoService)
         {
             _dataContext = dataContext;
+            _todoService = todoService;
         }
 
         [HttpGet]
@@ -26,45 +29,47 @@ namespace TodoApplication.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var todo = _dataContext.Todos.Find(id);
-            if (todo == null)
+            try
             {
-                return NotFound();
+                return Ok(_todoService.GetById(id));
             }
-            return Ok();
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
 
         [HttpPost]
         public IActionResult Create(CreateTodo createTodo)
         {
-            var model = new Todo
+            try
             {
-                Name = createTodo.Name
-            };
-
-            _dataContext.Todos.Add(model);
-            _dataContext.SaveChanges();
-
-            return Created("", model);
+                var createdId = _todoService.Create(createTodo);
+                return Created("", createdId);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, UpdateTodo todoUpdate)
         {
-            if (ModelState.ErrorCount > 0)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var todo = _dataContext.Todos.Find(id);
-            if (todo == null)
+            try
             {
-                return NotFound();
+                _todoService.Update(id, todoUpdate);
             }
-
-            todo.Name = todoUpdate.Name;
-
-            _dataContext.SaveChanges();
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
             return NoContent();
         }
@@ -72,15 +77,15 @@ namespace TodoApplication.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var todo = _dataContext.Todos.Find(id);
-            if (todo == null)
+            try
             {
-                return NotFound();
+                _todoService.Remove(id);
+                return NoContent();
             }
-            _dataContext.Remove(todo);
-            _dataContext.SaveChanges();
-
-            return NoContent();
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

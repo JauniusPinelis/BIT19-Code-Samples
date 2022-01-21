@@ -1,0 +1,30 @@
+﻿This application is more oriented into how you write code.
+There should not be any 500 exceptions.
+Controller methods should return Status Codes
+Try to write logic in Services
+This is a webapi
+
+Web Api for online Shop with ShopItems
+Shop can have list of Shopitems
+Shop: Name (must be longer than 4characters) and must be unique
+	  CreatedDate (Should be assigned by database to currentDate)
+
+ShopItem: Name,
+		  Price (must be more than 0)
+
+Main Requirements:
+
+1. Crud actions: 
+Shops: GetAll (with shopItems),GetById, Update, Remove
+ShopsItems: GetAll ,GetById, Update, Remove
+2. Expose Dtos instead of models/dtos
+
+Extra requirements:
+1. Instead of ModelState
+https://fluentvalidation.net/
+2. Employ AutoMapper
+https://docs.automapper.org/en/stable/Getting-started.html
+3. Try Createting Custom Exceptions
+https://docs.microsoft.com/en-us/dotnet/standard/exceptions/how-to-create-user-defined-exceptions
+
+
