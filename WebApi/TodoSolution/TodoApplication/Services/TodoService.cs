@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using TodoApplication.Data;
 using TodoApplication.Dtos;
 using TodoApplication.Models;
@@ -15,9 +17,9 @@ namespace TodoApplication.Services
             _dataContext = dataContext;
         }
 
-        public Todo GetById(int id)
+        public async Task<Todo> GetByIdAsync(int id)
         {
-            var todo = _dataContext.Todos.Find(id);
+            var todo = await _dataContext.Todos.FindAsync(id);
             if (todo == null)
             {
                 throw new ArgumentException("Todo not found");
@@ -26,15 +28,15 @@ namespace TodoApplication.Services
             return todo;
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var todo = GetById(id);
+            var todo = await GetByIdAsync(id);
 
             _dataContext.Todos.Remove(todo);
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
         }
 
-        public int Create(CreateTodo createTodo)
+        public async Task<int> CreateAsync(CreateTodo createTodo)
         {
             var doesNameExist = _dataContext.Todos.Select(x => x.Name).Contains(createTodo.Name);
             if (doesNameExist)
@@ -48,17 +50,17 @@ namespace TodoApplication.Services
             };
 
             _dataContext.Todos.Add(model);
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
 
             return model.Id;
         }
 
-        public void Update(int id, UpdateTodo updateTodo)
+        public async Task UpdateAsync(int id, UpdateTodo updateTodo)
         {
 
-            var todo = GetById(id);
+            var todo = await GetByIdAsync(id);
 
-            var doesNameExist = _dataContext.Todos.Select(x => x.Name).Contains(updateTodo.Name);
+            var doesNameExist = await _dataContext.Todos.AnyAsync(x => x.Name == updateTodo.Name);
             if (doesNameExist)
             {
                 throw new ArgumentException("The name already exists");
@@ -66,8 +68,7 @@ namespace TodoApplication.Services
 
             todo.Name = updateTodo.Name;
 
-            _dataContext.SaveChanges();
-            throw new SystemException();
+            await _dataContext.SaveChangesAsync();
         }
     }
 }

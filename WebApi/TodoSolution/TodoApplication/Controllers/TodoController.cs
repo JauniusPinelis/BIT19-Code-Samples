@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using TodoApplication.Data;
 using TodoApplication.Dtos;
 using TodoApplication.Services;
@@ -21,17 +23,24 @@ namespace TodoApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_dataContext.Todos.ToList());
+            var asyncResults = await _dataContext.Todos
+                .Where(t => t.Name == "First")
+                .Where(t => t.Name == "First")
+                .Where(t => t.Name == "First")
+                .ToListAsync();
+
+
+            return Ok(asyncResults);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                return Ok(_todoService.GetById(id));
+                return Ok(await _todoService.GetByIdAsync(id));
             }
             catch (ArgumentException ex)
             {
@@ -41,11 +50,11 @@ namespace TodoApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateTodo createTodo)
+        public async Task<IActionResult> Create(CreateTodo createTodo)
         {
             try
             {
-                var createdId = _todoService.Create(createTodo);
+                var createdId = await _todoService.CreateAsync(createTodo);
                 return Created("", createdId);
             }
             catch (ArgumentException ex)
@@ -55,7 +64,7 @@ namespace TodoApplication.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UpdateTodo todoUpdate)
+        public async Task<IActionResult> Update(int id, UpdateTodo todoUpdate)
         {
             if (!ModelState.IsValid)
             {
@@ -64,7 +73,7 @@ namespace TodoApplication.Controllers
 
             try
             {
-                _todoService.Update(id, todoUpdate);
+                await _todoService.UpdateAsync(id, todoUpdate);
             }
             catch (ArgumentException ex)
             {
@@ -75,11 +84,11 @@ namespace TodoApplication.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                _todoService.Remove(id);
+                await _todoService.RemoveAsync(id);
                 return NoContent();
             }
             catch (ArgumentException ex)
