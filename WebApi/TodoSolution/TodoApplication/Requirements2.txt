@@ -19,6 +19,9 @@ Shops: GetAll (with shopItems),GetById, Update, Remove
 ShopsItems: GetAll ,GetById, Update, Remove
 2. Expose Dtos instead of models/dtos
 
+3. Modify the Program to be asyncronous.
+4. Changes the names of asyncronous methods to contain 'Async'. (except controllers)
+
 Extra requirements:
 1. Instead of ModelState
 https://fluentvalidation.net/
