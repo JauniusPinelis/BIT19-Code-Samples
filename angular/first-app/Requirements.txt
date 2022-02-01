@@ -1,0 +1,9 @@
+Write an Angular application which Consumes https://jsonplaceholder.typicode.com/todos
+
+Required:
+All Todos properties should be displayed in table. The data should be loaded when the pages starts.
+
+Optional:
+1. Add Bootstrap to your table. (Table should look nice)
+2. Add Delete button next to each todo (which makes Delete Call).
+3. Try connecting angular with .NET api (read what is CORS and why we getting it).
