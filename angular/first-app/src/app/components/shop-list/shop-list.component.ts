@@ -14,15 +14,15 @@ export class ShopListComponent implements OnInit {
   public shops: Shop[] = [
     {
       id: 1,
-      title: 'Maxima'
+      name: 'Maxima'
     },
     {
       id: 2,
-      title: 'Norfa'
+      name: 'Norfa'
     },
     {
       id: 3,
-      title: 'Lidl'
+      name: 'Lidl'
     }
   ]
 

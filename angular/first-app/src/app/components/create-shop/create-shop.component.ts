@@ -18,7 +18,7 @@ export class CreateShopComponent implements OnInit {
 
   public submitNewShop(): void {
     let createShop: CreateShop = {
-      title: this.title
+      name: this.title
     };
 
     this.shopService.createShop(createShop).subscribe(() => {

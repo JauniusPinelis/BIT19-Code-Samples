@@ -13,10 +13,10 @@ export class ShopsService {
    }
 
   public getAllShops(): Observable<Shop[]> {
-    return this.httpClient.get<Shop[]>("https://jsonplaceholder.typicode.com/posts");
+    return this.httpClient.get<Shop[]>("https://localhost:44338/todo");
   }
 
   public createShop(createShop: CreateShop): Observable<any> {
-    return this.httpClient.post("https://jsonplaceholder.typicode.com/posts", createShop)
+    return this.httpClient.post("https://localhost:44338/todo", createShop)
   }
 }
