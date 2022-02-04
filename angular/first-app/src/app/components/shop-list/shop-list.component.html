@@ -1,8 +1,18 @@
 <h2>shop-list works!</h2>
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let shop of shops">
+            <td> {{shop.id}}</td>
+            <td> {{shop.title}} </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 
-<ul>
-    <li *ngFor="let shop of shops" >
-        {{shop.id}} {{shop.title}}
-    </li>
-   
-</ul>
