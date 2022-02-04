@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using TodoApplication.Data;
 using TodoApplication.Dtos;
@@ -26,9 +25,6 @@ namespace TodoApplication.Controllers
         public async Task<IActionResult> GetAll()
         {
             var asyncResults = await _dataContext.Todos
-                .Where(t => t.Name == "First")
-                .Where(t => t.Name == "First")
-                .Where(t => t.Name == "First")
                 .ToListAsync();
 
 
