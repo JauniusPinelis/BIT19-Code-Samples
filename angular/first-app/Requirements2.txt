@@ -36,3 +36,4 @@ CreateShop, ListShop.
 Additional Requirements
 2. Add RemoveShop functionality.
 3. Try adding UpdateShop functionality
+4. Add ShopItems to the Application
