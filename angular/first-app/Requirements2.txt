@@ -1,0 +1,38 @@
+You have already created backend for this:
+-------------------------------------------------------------
+﻿This application is more oriented into how you write code.
+There should not be any 500 exceptions.
+Controller methods should return Status Codes
+Try to write logic in Services
+This is a webapi
+
+Web Api for online Shop with ShopItems
+Shop can have list of Shopitems
+Shop: Name (must be longer than 4characters) and must be unique
+	  CreatedDate (Should be assigned by database to currentDate)
+
+ShopItem: Name,
+		  Price (must be more than 0)
+
+Main Requirements:
+
+1. Crud actions: 
+Shops: GetAll (with shopItems),GetById, Update, Remove
+ShopsItems: GetAll ,GetById, Update, Remove
+2. Expose Dtos instead of models/dtos
+
+3. Modify the Program to be asyncronous.
+4. Changes the names of asyncronous methods to contain 'Async'. (except controllers)
+
+-------------------------------------------------------------------------------------
+
+Please create front-end for this web api (only shops, no need for Shopitems):
+
+Main Requirements: 
+1. Angular application should have routing with navigation bar for the following items:
+CreateShop, ListShop.
+2. Application should look neat, please use Bootstrap (or be creative)
+
+Additional Requirements
+2. Add RemoveShop functionality.
+3. Try adding UpdateShop functionality
