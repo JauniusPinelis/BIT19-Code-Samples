@@ -1,0 +1,6 @@
+<app-todos-list 
+    (removeTodoEvent)="removeTodo($event)" 
+    [todosInput]="todos">
+
+</app-todos-list>
+<app-todos-create (todoCreateEvent)="createTodo($event)"></app-todos-create>
