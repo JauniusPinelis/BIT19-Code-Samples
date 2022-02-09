@@ -1,3 +1,12 @@
-<p>todos-create works!</p>
-
-<button (click) = "createTodo()">Create</button>
+<div class="container-fluid">
+  <h3>Create Todo</h3>
+  <form>
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input name="todoName" [(ngModel)]="todoName" type="text" class="form-control" />
+    </div>
+    <button (click)="createTodo()" type="button" class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>

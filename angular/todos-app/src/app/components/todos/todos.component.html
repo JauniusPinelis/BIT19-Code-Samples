@@ -1,6 +1,16 @@
-<app-todos-list 
-    (removeTodoEvent)="removeTodo($event)" 
-    [todosInput]="todos">
-
-</app-todos-list>
-<app-todos-create (todoCreateEvent)="createTodo($event)"></app-todos-create>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <app-todos-list
+        (removeTodoEvent)="removeTodo($event)"
+        [todosInput]="todos"
+      >
+      </app-todos-list>
+    </div>
+    <div class="col">
+      <app-todos-create
+        (todoCreateEvent)="createTodo($event)"
+      ></app-todos-create>
+    </div>
+  </div>
+</div>

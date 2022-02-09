@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import TodoCreate from 'src/app/models/todo-create.model';
 import Todo from 'src/app/models/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
 
@@ -20,12 +21,18 @@ export class TodosComponent implements OnInit {
   }
 
   public createTodo(todoEvent: any): void {
-    let todo: Todo = {
-      id: 5, 
+    let createTodo: TodoCreate = {
       name: todoEvent
     }
 
-    this.todos.push(todo);
+    this.todosService.create(createTodo).subscribe((todoId) => {
+      let todo: Todo = {
+        id: todoId,
+        name: createTodo.name
+      }
+      this.todos.push(todo);
+    });
+    
     console.log("Add Todo is called");
   }
 

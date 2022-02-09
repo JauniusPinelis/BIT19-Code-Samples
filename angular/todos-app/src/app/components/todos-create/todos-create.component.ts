@@ -7,14 +7,15 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class TodosCreateComponent implements OnInit {
   @Output() todoCreateEvent = new EventEmitter<string>();
+  public todoName: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   public createTodo(){
-    let todoName = "Creative todo name";
-    this.todoCreateEvent.emit(todoName);
+    this.todoCreateEvent.emit(this.todoName);
   }
 
 }
