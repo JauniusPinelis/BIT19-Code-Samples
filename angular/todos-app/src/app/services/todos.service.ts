@@ -18,4 +18,8 @@ export class TodosService {
   public create(todoCreate: TodoCreate) : Observable<number> {
     return this.httpClient.post<number>('https://localhost:44338/todo', todoCreate);
   }
+
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`https://localhost:44338/todo/${id}`);
+  }
 }

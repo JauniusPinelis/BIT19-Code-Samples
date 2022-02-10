@@ -38,8 +38,10 @@ export class TodosComponent implements OnInit {
 
   public removeTodo(removeTodoEvent: any): void {
     let id = removeTodoEvent;
-    // service call
-    this.todos = this.todos.filter(t => t.id != id);
+    this.todosService.delete(id).subscribe(() => {
+      this.todos = this.todos.filter(t => t.id != id);
+    });
+   
   }
 
 }
