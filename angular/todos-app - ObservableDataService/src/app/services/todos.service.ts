@@ -1,0 +1,25 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import TodoCreate from '../models/todo-create.model';
+import Todo from '../models/todo.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TodosService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  public getAll() : Observable<Todo[]> {
+    return this.httpClient.get<Todo[]>('https://localhost:44338/todo');
+  }
+
+  public create(todoCreate: TodoCreate) : Observable<Todo> {
+    return this.httpClient.post<Todo>('https://localhost:44338/todo', todoCreate);
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`https://localhost:44338/todo/${id}`);
+  }
+}
