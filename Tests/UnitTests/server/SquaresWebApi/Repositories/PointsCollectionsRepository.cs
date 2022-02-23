@@ -2,12 +2,11 @@
 using School_WebAPI_BE.Repositories;
 using SquaresWebApi.Data;
 using SquaresWebApi.Models;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SquaresWebApi.Repositories
 {
-    public class PointsCollectionsRepository : RepositoryBase<PointsCollection>
+    public class PointsCollectionsRepository : RepositoryBase<PointsCollection>, IPointsCollectionsRepository
     {
         public PointsCollectionsRepository(DataContext context) : base(context) { }
 
@@ -20,5 +19,6 @@ namespace SquaresWebApi.Repositories
         {
             return await _context.PointsCollections.Include(c => c.Points).FirstOrDefaultAsync(x => x.Name == name);
         }
+
     }
 }

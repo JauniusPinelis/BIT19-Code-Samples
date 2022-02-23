@@ -11,15 +11,15 @@ namespace SquaresWebApi.Services
 {
     public class PointsCollectionsService
     {
-        private readonly PointsCollectionsRepository _pointsCollectionsRepository;
-        private readonly PointsRepository _pointsRepository;
+        private readonly IPointsCollectionsRepository _pointsCollectionsRepository;
+        private readonly IPointsRepository _pointsRepository;
         private readonly IMapper _mapper;
         private readonly PointsCollectionsValidator _collectionsValidator;
         private readonly PointsValidator _pointsValidator;
 
         public PointsCollectionsService(
-            PointsCollectionsRepository pointsCollectionsRepository,
-            PointsRepository pointsRepository,
+            IPointsCollectionsRepository pointsCollectionsRepository,
+            IPointsRepository pointsRepository,
             IMapper mapper,
             PointsCollectionsValidator collectionsValidator,
             PointsValidator pointsValidator)

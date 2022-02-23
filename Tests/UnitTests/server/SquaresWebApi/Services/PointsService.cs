@@ -1,21 +1,14 @@
-﻿using AutoMapper;
-using SquaresWebApi.Dtos.PointDtos;
-using SquaresWebApi.Models;
+﻿using SquaresWebApi.Models;
 using SquaresWebApi.Repositories;
-using SquaresWebApi.Validators;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SquaresWebApi.Services
 {
     public class PointsService
     {
-        private readonly PointsRepository _pointsRepository;
+        private readonly IPointsRepository _pointsRepository;
 
-        public PointsService(PointsRepository pointsRepository)
+        public PointsService(IPointsRepository pointsRepository)
         {
             _pointsRepository = pointsRepository;
         }
