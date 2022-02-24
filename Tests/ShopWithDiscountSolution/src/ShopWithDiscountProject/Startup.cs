@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ShopWithDiscountProject.Data;
+using ShopWithDiscountProject.MappingProfiles;
+using ShopWithDiscountProject.Repositories;
+using ShopWithDiscountProject.Services;
 
 namespace ShopWithDiscountProject
 {
@@ -21,6 +24,10 @@ namespace ShopWithDiscountProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddTransient<ShopItemService>();
+            services.AddTransient<IShopItemRepository, ShopItemRepository>();
+
             var defaultConnection = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<DataContext>(u => u.UseSqlServer(defaultConnection));
