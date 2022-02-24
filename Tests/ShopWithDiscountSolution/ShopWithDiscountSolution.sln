@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopWithDiscountProject", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopWithDiscountProject.UnitTests", "tests\ShopWithDiscountProject.UnitTests\ShopWithDiscountProject.UnitTests.csproj", "{CDD3C4D7-9624-460C-ABE0-5A6BE9FBD433}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopWithDiscountProject.IntegrationTests", "tests\ShopWithDiscountProject.IntegrationTests\ShopWithDiscountProject.IntegrationTests.csproj", "{5886DF10-E2D5-451A-8DA2-B7BD3F42117C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{CDD3C4D7-9624-460C-ABE0-5A6BE9FBD433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD3C4D7-9624-460C-ABE0-5A6BE9FBD433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDD3C4D7-9624-460C-ABE0-5A6BE9FBD433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5886DF10-E2D5-451A-8DA2-B7BD3F42117C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5886DF10-E2D5-451A-8DA2-B7BD3F42117C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5886DF10-E2D5-451A-8DA2-B7BD3F42117C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5886DF10-E2D5-451A-8DA2-B7BD3F42117C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{21856F3A-0B6E-4CFA-B818-0A9C50E579FF} = {417C5AB8-6179-4DA5-9A8D-F3338303DA7E}
 		{CDD3C4D7-9624-460C-ABE0-5A6BE9FBD433} = {87BBBBB1-4556-4A26-A362-E59A5544CF54}
+		{5886DF10-E2D5-451A-8DA2-B7BD3F42117C} = {87BBBBB1-4556-4A26-A362-E59A5544CF54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52ED1D68-8546-4857-885A-B85587F9E196}
