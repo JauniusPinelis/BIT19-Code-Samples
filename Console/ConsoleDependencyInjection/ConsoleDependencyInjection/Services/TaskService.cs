@@ -1,18 +1,22 @@
-﻿namespace ConsoleDependencyInjection.Services
+﻿using ConsoleDependencyInjection.Interfaces;
+
+namespace ConsoleDependencyInjection.Services
 {
     public class TaskService
     {
         private DataService _dataService;
+        private IOutputService _outputService;
 
-        public TaskService(DataService dataService)
+        public TaskService(DataService dataService, IOutputService outputService)
         {
             _dataService = dataService;
+            _outputService = outputService;
         }
 
         public void Execute()
         {
             _dataService.ExecuteData();
-            Console.WriteLine("Executing Task Service");
+            _outputService.Print("Executing Task Service");
         }
     }
 }

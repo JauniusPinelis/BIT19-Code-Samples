@@ -1,4 +1,5 @@
-﻿using ConsoleDependencyInjection.Services;
+﻿using ConsoleDependencyInjection.Interfaces;
+using ConsoleDependencyInjection.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleDependencyInjection
@@ -10,6 +11,7 @@ namespace ConsoleDependencyInjection
         {
             services.AddTransient<TaskService>();
             services.AddTransient<DataService>();
+            services.AddTransient<IOutputService, FileService>();
         }
     }
 }

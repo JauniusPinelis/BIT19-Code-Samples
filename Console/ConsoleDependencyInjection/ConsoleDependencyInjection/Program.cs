@@ -4,8 +4,6 @@ using ConsoleDependencyInjection;
 using ConsoleDependencyInjection.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-Console.WriteLine("Hello, World!");
-
 var services = new ServiceCollection();
 
 // using extension methods

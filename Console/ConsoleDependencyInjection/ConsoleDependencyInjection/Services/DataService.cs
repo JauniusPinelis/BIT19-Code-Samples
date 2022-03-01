@@ -1,10 +1,19 @@
-﻿namespace ConsoleDependencyInjection.Services
+﻿using ConsoleDependencyInjection.Interfaces;
+
+namespace ConsoleDependencyInjection.Services
 {
     public class DataService
     {
+        private IOutputService _outputService;
+
+        public DataService(IOutputService outputService)
+        {
+            _outputService = outputService;
+        }
+
         public void ExecuteData()
         {
-            Console.WriteLine("Executing Data Service");
+            _outputService.Print("Executing Data Service");
         }
     }
 }
