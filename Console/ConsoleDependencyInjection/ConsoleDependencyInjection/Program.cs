@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
+//https://keestalkstech.com/2018/04/dependency-injection-with-ioptions-in-console-apps-in-net-core-2/
 using ConsoleDependencyInjection;
 using ConsoleDependencyInjection.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,4 +13,4 @@ services.ConfigureServices();
 var serviceProvider = services.BuildServiceProvider();
 
 var taskService = serviceProvider.GetService<TaskService>();
-taskService.Execute();
+await taskService.ExecuteAsync();

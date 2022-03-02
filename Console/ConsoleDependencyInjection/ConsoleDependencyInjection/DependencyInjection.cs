@@ -12,6 +12,7 @@ namespace ConsoleDependencyInjection
             services.AddTransient<TaskService>();
             services.AddTransient<DataService>();
             services.AddTransient<IOutputService, FileService>();
+            services.AddTransient<FileService>();
         }
     }
 }
