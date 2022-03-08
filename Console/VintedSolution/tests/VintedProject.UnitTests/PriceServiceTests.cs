@@ -1,7 +1,5 @@
 using FluentAssertions;
-using Moq;
 using System.Collections.Generic;
-using VintedProject.Interfaces;
 using VintedProject.Models;
 using VintedProject.Services;
 using Xunit;
@@ -30,13 +28,9 @@ namespace VintedProject.UnitTests
                 Provider = "LP"
             };
 
-            var fileServiceMock = new Mock<IFileService>();
-            fileServiceMock.Setup(x => x.LoadShippingInfos())
-                .Returns(shippingInfos);
+            var priceService = new PriceService();
 
-            var priceService = new PriceService(fileServiceMock.Object);
-
-            var calculatedTransaction = priceService.CalculatePrice(transaction);
+            var calculatedTransaction = priceService.CalculatePrice(transaction, shippingInfos);
 
             calculatedTransaction.Should().Be(shippingInfos[0].Price);
         }

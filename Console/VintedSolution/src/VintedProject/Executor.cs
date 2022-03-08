@@ -6,9 +6,9 @@ namespace VintedProject
     {
         private ShippingService _shippingService;
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
-            _shippingService.ProcessPrices();
+            await _shippingService.ProcessPricesAsync();
         }
     }
 }

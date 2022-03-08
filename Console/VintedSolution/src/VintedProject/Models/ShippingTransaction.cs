@@ -9,5 +9,7 @@
         public string Provider { get; set; }
 
         public decimal? Price { get; set; }
+
+        public bool IsValid { get; set; } = true;
     }
 }

@@ -10,4 +10,4 @@ services.AddTransient<Executor>();
 var serviceProvider = services.BuildServiceProvider();
 
 var executor = serviceProvider.GetRequiredService<Executor>();
-executor.Execute();
+await executor.ExecuteAsync();

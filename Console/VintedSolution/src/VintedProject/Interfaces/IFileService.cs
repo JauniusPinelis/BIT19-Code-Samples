@@ -4,7 +4,7 @@ namespace VintedProject.Interfaces
 {
     public interface IFileService
     {
-        List<ShippingInfo> LoadShippingInfos();
-        List<ShippingTransaction> LoadTransactions();
+        Task<List<ShippingInfo>> LoadShippingInfosAsync();
+        Task<List<ShippingTransaction>> LoadTransactionsAsync();
     }
 }

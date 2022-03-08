@@ -1,24 +1,17 @@
-﻿using VintedProject.Interfaces;
-using VintedProject.Models;
+﻿using VintedProject.Models;
 
 namespace VintedProject.Services
 {
     public class PriceService
     {
-        private List<ShippingInfo> _shippingInfos;
-        private IFileService _fileService;
 
-        public PriceService(IFileService fileService)
+        public PriceService()
         {
-            _fileService = fileService;
-
-            _shippingInfos = _fileService.LoadShippingInfos();
         }
 
-
-        public decimal CalculatePrice(ShippingTransaction transaction)
+        public decimal CalculatePrice(ShippingTransaction transaction, List<ShippingInfo> shippingInfos)
         {
-            var price = _shippingInfos.FirstOrDefault(s => s.PackageSize == transaction.PackageSize
+            var price = shippingInfos.FirstOrDefault(s => s.PackageSize == transaction.PackageSize
                 && s.Provider == transaction.Provider);
 
             return price.Price;
