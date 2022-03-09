@@ -1,4 +1,6 @@
-﻿using VintedProject.Interfaces;
+﻿using VintedProject.Enums;
+using VintedProject.Extensions;
+using VintedProject.Interfaces;
 using VintedProject.Models;
 
 namespace VintedProject.Services
@@ -27,8 +29,8 @@ namespace VintedProject.Services
                     var transaction = new ShippingTransaction
                     {
                         Date = DateOnly.Parse(transactionInfo[0]),
-                        PackageSize = transactionInfo[1],
-                        Provider = transactionInfo[2]
+                        PackageSize = transactionInfo[1].ToEnum<PackageSize>(),
+                        Provider = transactionInfo[2].ToEnum<ShippingProvider>()
                     };
 
                     transactions.Add(transaction);
@@ -37,7 +39,8 @@ namespace VintedProject.Services
                 {
                     transactions.Add(new ShippingTransaction
                     {
-                        IsValid = false
+                        IsValid = false,
+                        ParametersText = transactionLine
                     });
                 }
             }
@@ -57,8 +60,9 @@ namespace VintedProject.Services
 
                 shippingInfos.Add(new ShippingInfo
                 {
-                    Provider = splitInfo[0],
-                    PackageSize = splitInfo[1],
+
+                    Provider = splitInfo[0].ToEnum<ShippingProvider>(),
+                    PackageSize = splitInfo[1].ToEnum<PackageSize>(),
                     Price = decimal.Parse(splitInfo[2])
                 });
             }

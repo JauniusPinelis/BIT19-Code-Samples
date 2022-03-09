@@ -1,4 +1,5 @@
-﻿using VintedProject.Models;
+﻿using VintedProject.Interfaces;
+using VintedProject.Models;
 
 namespace VintedProject.Services
 {
@@ -11,8 +12,15 @@ namespace VintedProject.Services
 
 
         private FileService _fileService;
-        private OutputService _outputService;
+        private IOutputService _outputService;
         private PriceService _priceService;
+
+        public ShippingService(FileService fileService, IOutputService outputService, PriceService priceService)
+        {
+            _fileService = fileService;
+            _outputService = outputService;
+            _priceService = priceService;
+        }
 
         public async Task ProcessPricesAsync()
         {

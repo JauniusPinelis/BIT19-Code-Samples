@@ -52,8 +52,8 @@ namespace VintedProject.UnitTests
             //Assert
             transactions.Count.Should().Be(2);
             transactions[0].Date.Should().Be(new System.DateOnly(2015, 02, 01));
-            transactions[0].PackageSize.Should().Be("S");
-            transactions[0].Provider.Should().Be("MR");
+            transactions[0].PackageSize.Should().Be(Enums.PackageSize.S);
+            transactions[0].Provider.Should().Be(Enums.ShippingProvider.MR);
             transactions.ForEach(t => t.IsValid.Should().BeTrue());
         }
 
@@ -77,6 +77,7 @@ namespace VintedProject.UnitTests
 
             //Assert
             transactions.ForEach(t => t.IsValid.Should().BeFalse());
+            transactions[0].ParametersText.Should().Be("2015-02-29 CUSPS");
         }
     }
 }

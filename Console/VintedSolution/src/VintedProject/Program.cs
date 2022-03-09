@@ -2,10 +2,11 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using VintedProject;
+using VintedProject.Extensions;
 
 var services = new ServiceCollection();
 
-services.AddTransient<Executor>();
+services.ConfigureServices();
 
 var serviceProvider = services.BuildServiceProvider();
 

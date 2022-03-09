@@ -1,10 +1,12 @@
-﻿namespace VintedProject.Models
+﻿using VintedProject.Enums;
+
+namespace VintedProject.Models
 {
     public class ShippingInfo
     {
-        public string Provider { get; set; }
+        public ShippingProvider Provider { get; set; }
 
-        public string PackageSize { get; set; }
+        public PackageSize PackageSize { get; set; }
 
         public decimal Price { get; set; }
     }

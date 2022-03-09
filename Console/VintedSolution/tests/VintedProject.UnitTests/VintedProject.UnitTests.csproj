@@ -26,4 +26,10 @@
     <ProjectReference Include="..\..\src\VintedProject\VintedProject.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\sample.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

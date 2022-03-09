@@ -4,7 +4,12 @@ namespace VintedProject
 {
     public class Executor
     {
-        private ShippingService _shippingService;
+        private readonly ShippingService _shippingService;
+
+        public Executor(ShippingService shippingService)
+        {
+            _shippingService = shippingService;
+        }
 
         public async Task ExecuteAsync()
         {

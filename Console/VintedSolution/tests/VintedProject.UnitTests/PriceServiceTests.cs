@@ -1,5 +1,6 @@
 using FluentAssertions;
 using System.Collections.Generic;
+using VintedProject.Enums;
 using VintedProject.Models;
 using VintedProject.Services;
 using Xunit;
@@ -15,8 +16,8 @@ namespace VintedProject.UnitTests
             {
                 new ShippingInfo()
                 {
-                    Provider = "LP",
-                    PackageSize = "S",
+                    Provider = ShippingProvider.LP,
+                    PackageSize = PackageSize.S,
                     Price = 1.5M
                 }
             };
@@ -24,8 +25,8 @@ namespace VintedProject.UnitTests
             var transaction = new ShippingTransaction
             {
                 Date = System.DateOnly.MaxValue,
-                PackageSize = "S",
-                Provider = "LP"
+                PackageSize = PackageSize.S,
+                Provider = ShippingProvider.LP
             };
 
             var priceService = new PriceService();
