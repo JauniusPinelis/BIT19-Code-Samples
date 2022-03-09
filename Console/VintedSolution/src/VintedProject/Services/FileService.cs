@@ -5,7 +5,7 @@ using VintedProject.Models;
 
 namespace VintedProject.Services
 {
-    public class FileService : IFileService
+    public class FileService
     {
         private ITextImportService _textImportService;
 
