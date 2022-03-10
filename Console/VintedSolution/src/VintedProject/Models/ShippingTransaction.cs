@@ -11,6 +11,7 @@ namespace VintedProject.Models
         public ShippingProvider Provider { get; set; }
 
         public decimal? Price { get; set; }
+        public decimal Discount { get; set; }
 
         public bool IsValid { get; set; } = true;
 
@@ -18,8 +19,10 @@ namespace VintedProject.Models
 
         public override string ToString()
         {
+            var discountText = Discount != 0 ? Discount.ToString("0.00") : "-";
+
             return IsValid
-                ? $"{Date.ToString("yyyy-MM-dd")} {PackageSize} {Provider} {Price}"
+                ? $"{Date.ToString("yyyy-MM-dd")} {PackageSize} {Provider} {Price.Value.ToString("0.00")} {discountText}"
                 : ParametersText;
         }
     }

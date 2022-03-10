@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System.IO;
 using System.Threading.Tasks;
+using VintedProject.Discounts;
 using VintedProject.Services;
 using VintedProject.UnitTests.Services;
 using Xunit;
@@ -19,7 +20,9 @@ namespace VintedProject.UnitTests
 
             var priceService = new PriceService();
 
-            var shippingService = new ShippingService(fileService, fileOutputService, priceService);
+            var discountFactory = new DiscountFactory();
+
+            var shippingService = new ShippingService(fileService, fileOutputService, priceService, discountFactory);
             await shippingService.ProcessPricesAsync();
 
             var processedTransactions = await File.ReadAllLinesAsync("Data/Output.txt");
