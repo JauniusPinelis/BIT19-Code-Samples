@@ -41,6 +41,7 @@ namespace VintedProject.Services
                 {
                     discount.Process(transaction);
                 }
+                _discountFactory.RecordProcessedTransaction(transaction);
             }
 
             _outputService.PrintTransactions(_shippingTransactions);
