@@ -9,20 +9,18 @@ namespace VintedProject.Discounts
 
         public IDiscount Build(ShippingTransaction transaction, List<ShippingInfo> shippingInfos)
         {
-            var key = $"{transaction.Date.Year}-{transaction.Date.Month}";
-            List<ProcessedShipping> transactions = _processedShippings.GetValueOrDefault(key, new List<ProcessedShipping>());
 
-            if (transaction.PackageSize == Enums.PackageSize.L &&
-                transaction.Provider == Enums.ShippingProvider.LP &&
-                transactions.Count(t => t.Size == Enums.PackageSize.L && t.Provider == Enums.ShippingProvider.LP) == 2)
+            var discountList = new List<IDiscount>() {
+                new FreeShippingDiscount(),
+                new LowestSmallPackageDiscount(shippingInfos)
+            };
 
+            foreach (var discount in discountList)
             {
-                return new FreeShippingDiscount();
-            }
-            // Logic which will decide which discount to pick
-            if (transaction.PackageSize == Enums.PackageSize.S)
-            {
-                return new LowestSmallPackageDiscount(shippingInfos);
+                if (discount.Applies(transaction, _processedShippings))
+                {
+                    return discount;
+                }
             }
 
             return null;
