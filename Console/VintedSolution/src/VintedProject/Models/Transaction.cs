@@ -2,7 +2,7 @@
 
 namespace VintedProject.Models
 {
-    public class ShippingTransaction
+    public class Transaction
     {
         public DateOnly Date { get; set; }
 

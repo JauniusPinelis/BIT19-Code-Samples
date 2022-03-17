@@ -1,4 +1,5 @@
 ﻿using VintedProject.Discounts.Strategies;
+using VintedProject.Helpers;
 using VintedProject.Models;
 
 namespace VintedProject.Discounts
@@ -7,9 +8,9 @@ namespace VintedProject.Discounts
     {
         private Dictionary<string, List<ProcessedShipping>> _processedShippings = new Dictionary<string, List<ProcessedShipping>>();
 
-        public IDiscount Build(ShippingTransaction transaction, List<ShippingInfo> shippingInfos)
+        public IDiscount Build(Transaction transaction, List<ShippingInfo> shippingInfos)
         {
-
+            // FactoryPattern
             var discountList = new List<IDiscount>() {
                 new FreeShippingDiscount(_processedShippings),
                 new LowestSmallPackageDiscount(shippingInfos, _processedShippings)
@@ -26,9 +27,9 @@ namespace VintedProject.Discounts
             return null;
         }
 
-        public void RecordProcessedTransaction(ShippingTransaction transaction)
+        public void RecordProcessedTransaction(Transaction transaction)
         {
-            var key = $"{transaction.Date.Year}-{transaction.Date.Month}";
+            var key = TransactionHelper.GenerateKey(transaction);
 
             List<ProcessedShipping> shippings = _processedShippings.GetValueOrDefault(key, new List<ProcessedShipping>());
             shippings.Add(new ProcessedShipping

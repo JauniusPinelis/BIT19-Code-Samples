@@ -12,12 +12,12 @@ namespace VintedProject.Discounts.Strategies
             _shippingInfos = shippingInfos;
         }
 
-        public bool Applies(ShippingTransaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings)
+        public bool Applies(Transaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings)
         {
             return transaction.PackageSize == Enums.PackageSize.S;
         }
 
-        public void Process(ShippingTransaction transaction)
+        public void Process(Transaction transaction)
         {
             decimal lowestShippingPrice = _shippingInfos.Where(si => si.PackageSize == Enums.PackageSize.S)
                 .Min(si => si.Price);

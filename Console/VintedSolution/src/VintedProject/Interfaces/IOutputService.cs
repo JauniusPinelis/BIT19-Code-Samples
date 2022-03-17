@@ -4,6 +4,6 @@ namespace VintedProject.Interfaces
 {
     public interface IOutputService
     {
-        void PrintTransactions(List<ShippingTransaction> transactions);
+        void PrintTransactions(List<Transaction> transactions);
     }
 }

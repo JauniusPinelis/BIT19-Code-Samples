@@ -1,15 +1,10 @@
 ﻿using VintedProject.Models;
 
-namespace VintedProject.Services
+namespace VintedProject.Helpers
 {
-    public class PriceService
+    public static class PriceHelper
     {
-
-        public PriceService()
-        {
-        }
-
-        public decimal CalculatePrice(ShippingTransaction transaction, List<ShippingInfo> shippingInfos)
+        public static decimal CalculatePrice(Transaction transaction, List<ShippingInfo> shippingInfos)
         {
             var price = shippingInfos.FirstOrDefault(s => s.PackageSize == transaction.PackageSize
                 && s.Provider == transaction.Provider);

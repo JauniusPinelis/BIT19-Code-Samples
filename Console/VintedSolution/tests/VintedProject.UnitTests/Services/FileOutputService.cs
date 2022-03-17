@@ -8,7 +8,7 @@ namespace VintedProject.UnitTests.Services
 {
     public class FileOutputService : IOutputService
     {
-        public void PrintTransactions(List<ShippingTransaction> transactions)
+        public void PrintTransactions(List<Transaction> transactions)
         {
             File.WriteAllLines("Data/Output.txt", transactions.Select(t => t.ToString()));
         }

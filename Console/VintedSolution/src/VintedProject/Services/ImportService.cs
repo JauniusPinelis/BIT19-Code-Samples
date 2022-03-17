@@ -5,20 +5,20 @@ using VintedProject.Models;
 
 namespace VintedProject.Services
 {
-    public class FileService
+    public class ImportService
     {
         private ITextImportService _textImportService;
 
-        public FileService(ITextImportService textImportService)
+        public ImportService(ITextImportService textImportService)
         {
             _textImportService = textImportService;
         }
 
-        public async Task<List<ShippingTransaction>> LoadTransactionsAsync()
+        public async Task<List<Transaction>> LoadTransactionsAsync()
         {
             var transactionLines = await _textImportService.ReadTransactionsText();
 
-            var transactions = new List<ShippingTransaction>();
+            var transactions = new List<Transaction>();
 
             foreach (var transactionLine in transactionLines)
             {
@@ -26,7 +26,7 @@ namespace VintedProject.Services
                 {
                     var transactionInfo = transactionLine.Split(" ");
 
-                    var transaction = new ShippingTransaction
+                    var transaction = new Transaction
                     {
                         Date = DateOnly.Parse(transactionInfo[0]),
                         PackageSize = transactionInfo[1].ToEnum<PackageSize>(),
@@ -37,7 +37,7 @@ namespace VintedProject.Services
                 }
                 catch
                 {
-                    transactions.Add(new ShippingTransaction
+                    transactions.Add(new Transaction
                     {
                         IsValid = false,
                         ParametersText = transactionLine

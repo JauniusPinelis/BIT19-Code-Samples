@@ -10,9 +10,8 @@ namespace VintedProject
         public static void ConfigureServices(this ServiceCollection services)
         {
             services.AddTransient<Executor>();
-            services.AddTransient<FileService>();
+            services.AddTransient<ImportService>();
             services.AddTransient<ITextImportService, TextImportService>();
-            services.AddTransient<PriceService>();
             services.AddTransient<ShippingService>();
             services.AddTransient<IOutputService, OutputService>();
             services.AddTransient<DiscountFactory>();

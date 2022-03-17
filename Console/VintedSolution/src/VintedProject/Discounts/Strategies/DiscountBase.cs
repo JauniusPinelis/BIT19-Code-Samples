@@ -1,9 +1,12 @@
-﻿using VintedProject.Models;
+﻿using VintedProject.Helpers;
+using VintedProject.Models;
 
 namespace VintedProject.Discounts.Strategies
 {
     public class DiscountBase
     {
+        private const decimal discountLimit = 10M;
+
         protected Dictionary<string, List<ProcessedShipping>> _processedShippings;
 
         public DiscountBase(Dictionary<string, List<ProcessedShipping>> processedShippings)
@@ -11,10 +14,9 @@ namespace VintedProject.Discounts.Strategies
             _processedShippings = processedShippings;
         }
 
-        protected void LimitDiscount(ShippingTransaction transaction)
+        protected void LimitDiscount(Transaction transaction)
         {
-            var discountLimit = 10M;
-            var key = $"{transaction.Date.Year}-{transaction.Date.Month}";
+            var key = TransactionHelper.GenerateKey(transaction);
 
             var processedShippings = _processedShippings.GetValueOrDefault(key, new List<ProcessedShipping>());
             var accumulatedDiscounts = processedShippings.Sum(ps => ps.Discount);

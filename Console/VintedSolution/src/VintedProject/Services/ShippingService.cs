@@ -1,4 +1,5 @@
 ﻿using VintedProject.Discounts;
+using VintedProject.Helpers;
 using VintedProject.Interfaces;
 using VintedProject.Models;
 
@@ -8,23 +9,17 @@ namespace VintedProject.Services
 
     public class ShippingService
     {
-        private List<ShippingTransaction> _shippingTransactions;
+        private List<Transaction> _shippingTransactions;
         private List<ShippingInfo> _shippingInfos;
 
-        public int Number { get; set; }
-
-
-        private FileService _fileService;
+        private ImportService _fileService;
         private IOutputService _outputService;
-        private PriceService _priceService;
         private DiscountFactory _discountFactory;
 
-        public ShippingService(FileService fileService, IOutputService outputService,
-            PriceService priceService, DiscountFactory discountFactory)
+        public ShippingService(ImportService fileService, IOutputService outputService, DiscountFactory discountFactory)
         {
             _fileService = fileService;
             _outputService = outputService;
-            _priceService = priceService;
             _discountFactory = discountFactory;
         }
 
@@ -35,7 +30,7 @@ namespace VintedProject.Services
 
             foreach (var transaction in _shippingTransactions.Where(st => st.IsValid))
             {
-                transaction.Price = _priceService.CalculatePrice(transaction, _shippingInfos);
+                transaction.Price = PriceHelper.CalculatePrice(transaction, _shippingInfos);
 
                 IDiscount discount = _discountFactory.Build(transaction, _shippingInfos);
 

@@ -23,7 +23,7 @@ namespace VintedProject.UnitTests
                     "LP L 4.9"
                 });
 
-            var fileService = new FileService(importTextServiceMock.Object);
+            var fileService = new ImportService(importTextServiceMock.Object);
 
             //Act
             var shippingInfos = await fileService.LoadShippingInfosAsync();
@@ -44,7 +44,7 @@ namespace VintedProject.UnitTests
                     "2015-02-01 L MR",
                 });
 
-            var fileService = new FileService(importTextServiceMock.Object);
+            var fileService = new ImportService(importTextServiceMock.Object);
 
             //Act
             var transactions = await fileService.LoadTransactionsAsync();
@@ -70,7 +70,7 @@ namespace VintedProject.UnitTests
                     "2015-02-29 L MR",
                 });
 
-            var fileService = new FileService(importTextServiceMock.Object);
+            var fileService = new ImportService(importTextServiceMock.Object);
 
             //Act
             var transactions = await fileService.LoadTransactionsAsync();

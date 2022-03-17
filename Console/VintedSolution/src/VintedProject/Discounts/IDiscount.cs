@@ -4,8 +4,8 @@ namespace VintedProject.Discounts
 {
     public interface IDiscount
     {
-        void Process(ShippingTransaction transaction);
+        void Process(Transaction transaction);
 
-        bool Applies(ShippingTransaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings = null);
+        bool Applies(Transaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings = null);
     }
 }

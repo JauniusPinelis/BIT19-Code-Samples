@@ -14,15 +14,13 @@ namespace VintedProject.UnitTests
         public async Task ProcessPricesAsync_PrintingResultsToFile_ShouldBeEqualToExample()
         {
             var textImportService = new TextImportService();
-            var fileService = new FileService(textImportService);
+            var fileService = new ImportService(textImportService);
 
             var fileOutputService = new FileOutputService();
 
-            var priceService = new PriceService();
-
             var discountFactory = new DiscountFactory();
 
-            var shippingService = new ShippingService(fileService, fileOutputService, priceService, discountFactory);
+            var shippingService = new ShippingService(fileService, fileOutputService, discountFactory);
             await shippingService.ProcessPricesAsync();
 
             var processedTransactions = await File.ReadAllLinesAsync("Data/Output.txt");

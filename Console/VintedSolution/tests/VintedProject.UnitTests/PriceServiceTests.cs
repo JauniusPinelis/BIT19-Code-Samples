@@ -1,8 +1,8 @@
 using FluentAssertions;
 using System.Collections.Generic;
 using VintedProject.Enums;
+using VintedProject.Helpers;
 using VintedProject.Models;
-using VintedProject.Services;
 using Xunit;
 
 namespace VintedProject.UnitTests
@@ -22,16 +22,14 @@ namespace VintedProject.UnitTests
                 }
             };
 
-            var transaction = new ShippingTransaction
+            var transaction = new Transaction
             {
                 Date = System.DateOnly.MaxValue,
                 PackageSize = PackageSize.S,
                 Provider = ShippingProvider.LP
             };
 
-            var priceService = new PriceService();
-
-            var calculatedTransaction = priceService.CalculatePrice(transaction, shippingInfos);
+            var calculatedTransaction = PriceHelper.CalculatePrice(transaction, shippingInfos);
 
             calculatedTransaction.Should().Be(shippingInfos[0].Price);
         }

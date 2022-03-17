@@ -1,4 +1,5 @@
-﻿using VintedProject.Models;
+﻿using VintedProject.Helpers;
+using VintedProject.Models;
 
 namespace VintedProject.Discounts.Strategies
 {
@@ -9,9 +10,9 @@ namespace VintedProject.Discounts.Strategies
 
         }
 
-        public bool Applies(ShippingTransaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings)
+        public bool Applies(Transaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings)
         {
-            var key = $"{transaction.Date.Year}-{transaction.Date.Month}";
+            var key = TransactionHelper.GenerateKey(transaction);
             List<ProcessedShipping> transactions = processedShippings.GetValueOrDefault(key, new List<ProcessedShipping>());
 
             return transaction.PackageSize == Enums.PackageSize.L &&
@@ -19,7 +20,7 @@ namespace VintedProject.Discounts.Strategies
                 transactions.Count(t => t.Size == Enums.PackageSize.L && t.Provider == Enums.ShippingProvider.LP) == 2;
         }
 
-        public void Process(ShippingTransaction transaction)
+        public void Process(Transaction transaction)
         {
             var discount = transaction.Price.Value;
 
