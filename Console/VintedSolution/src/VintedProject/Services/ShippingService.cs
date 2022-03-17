@@ -11,6 +11,8 @@ namespace VintedProject.Services
         private List<ShippingTransaction> _shippingTransactions;
         private List<ShippingInfo> _shippingInfos;
 
+        public int Number { get; set; }
+
 
         private FileService _fileService;
         private IOutputService _outputService;
@@ -31,7 +33,7 @@ namespace VintedProject.Services
             _shippingTransactions = await _fileService.LoadTransactionsAsync();
             _shippingInfos = await _fileService.LoadShippingInfosAsync();
 
-            foreach (var transaction in _shippingTransactions)
+            foreach (var transaction in _shippingTransactions.Where(st => st.IsValid))
             {
                 transaction.Price = _priceService.CalculatePrice(transaction, _shippingInfos);
 

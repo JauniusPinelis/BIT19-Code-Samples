@@ -11,8 +11,8 @@ namespace VintedProject.Discounts
         {
 
             var discountList = new List<IDiscount>() {
-                new FreeShippingDiscount(),
-                new LowestSmallPackageDiscount(shippingInfos)
+                new FreeShippingDiscount(_processedShippings),
+                new LowestSmallPackageDiscount(shippingInfos, _processedShippings)
             };
 
             foreach (var discount in discountList)

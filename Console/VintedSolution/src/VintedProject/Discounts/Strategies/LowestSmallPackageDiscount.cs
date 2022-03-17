@@ -2,11 +2,12 @@
 
 namespace VintedProject.Discounts.Strategies
 {
-    public class LowestSmallPackageDiscount : IDiscount
+    public class LowestSmallPackageDiscount : DiscountBase, IDiscount
     {
         private List<ShippingInfo> _shippingInfos;
 
-        public LowestSmallPackageDiscount(List<ShippingInfo> shippingInfos)
+        public LowestSmallPackageDiscount(List<ShippingInfo> shippingInfos, Dictionary<string, List<ProcessedShipping>> processedShippings)
+            : base(processedShippings)
         {
             _shippingInfos = shippingInfos;
         }
@@ -25,6 +26,8 @@ namespace VintedProject.Discounts.Strategies
 
             transaction.Price = lowestShippingPrice;
             transaction.Discount = discount;
+
+            LimitDiscount(transaction);
         }
     }
 }

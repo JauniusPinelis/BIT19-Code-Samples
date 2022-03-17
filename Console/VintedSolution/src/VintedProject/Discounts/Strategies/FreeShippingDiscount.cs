@@ -2,8 +2,13 @@
 
 namespace VintedProject.Discounts.Strategies
 {
-    public class FreeShippingDiscount : IDiscount
+    public class FreeShippingDiscount : DiscountBase, IDiscount
     {
+        public FreeShippingDiscount(Dictionary<string, List<ProcessedShipping>> processedShippings) : base(processedShippings)
+        {
+
+        }
+
         public bool Applies(ShippingTransaction transaction, Dictionary<string, List<ProcessedShipping>> processedShippings)
         {
             var key = $"{transaction.Date.Year}-{transaction.Date.Month}";
@@ -20,6 +25,8 @@ namespace VintedProject.Discounts.Strategies
 
             transaction.Price = 0;
             transaction.Discount = discount;
+
+            LimitDiscount(transaction);
         }
     }
 }

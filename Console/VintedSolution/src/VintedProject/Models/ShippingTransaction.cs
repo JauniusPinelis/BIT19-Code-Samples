@@ -23,7 +23,7 @@ namespace VintedProject.Models
 
             return IsValid
                 ? $"{Date.ToString("yyyy-MM-dd")} {PackageSize} {Provider} {Price.Value.ToString("0.00")} {discountText}"
-                : ParametersText;
+                : ParametersText + " Ignored";
         }
     }
 }
