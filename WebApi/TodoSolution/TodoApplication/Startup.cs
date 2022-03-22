@@ -1,12 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using TodoApplication.Data;
-using TodoApplication.Services;
 
 namespace TodoApplication
 {
@@ -22,10 +19,7 @@ namespace TodoApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<DataContext>(d => d.UseSqlServer(connectionString));
-            services.AddTransient<TodoService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
