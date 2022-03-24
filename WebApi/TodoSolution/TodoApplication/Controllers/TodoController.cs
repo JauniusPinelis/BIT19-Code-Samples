@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
-using TodoApplication.Data;
-using TodoApplication.Dtos;
-using TodoApplication.Services;
+using TodoSolution.Domain.Dtos;
+using TodoSolution.Domain.Services;
 
 namespace TodoApplication.Controllers
 {
@@ -12,23 +10,11 @@ namespace TodoApplication.Controllers
     [Route("[controller]")]
     public class TodoController : ControllerBase
     {
-        private readonly DataContext _dataContext;
         private TodoService _todoService;
 
-        public TodoController(DataContext dataContext, TodoService todoService)
+        public TodoController(TodoService todoService)
         {
-            _dataContext = dataContext;
             _todoService = todoService;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var asyncResults = await _dataContext.Todos
-                .ToListAsync();
-
-
-            return Ok(asyncResults);
         }
 
         [HttpGet("{id}")]
@@ -57,26 +43,6 @@ namespace TodoApplication.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateTodo todoUpdate)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                await _todoService.UpdateAsync(id, todoUpdate);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            return NoContent();
         }
 
         [HttpDelete("{id}")]

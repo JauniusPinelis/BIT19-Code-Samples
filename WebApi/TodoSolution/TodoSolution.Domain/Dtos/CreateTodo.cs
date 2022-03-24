@@ -1,4 +1,4 @@
-﻿namespace TodoApplication.Dtos
+﻿namespace TodoSolution.Domain.Dtos
 {
     public class CreateTodo
     {

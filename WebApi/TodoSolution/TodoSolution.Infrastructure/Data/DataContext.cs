@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TodoApplication.Models;
+using TodoSolution.Domain.Models;
 
 namespace TodoApplication.Data
 {

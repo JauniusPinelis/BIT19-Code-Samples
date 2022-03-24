@@ -6,12 +6,11 @@ namespace TodoSolution.Application
 {
     public static class DependencyInjection
     {
-        public static void ConfigureServices(this ServiceCollection serviceCollection, IConfiguration configuration)
+        public static void ConfigureApplication(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             serviceCollection.RegisterDatabase(connectionString);
-            //serviceCollection.AddTransient<TodoService>();
         }
     }
 }
