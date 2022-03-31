@@ -1,9 +1,8 @@
-﻿using TodoSolution.Domain.Interfaces;
-using TodoSolution.Domain.Models;
+﻿using TodoSolution.Domain.Models;
 
 namespace TodoSolution.Infrastructure.Repositories
 {
-    public class TodoRepository : ITodoRepository
+    public class TodoRepository
     {
         public Task<int> CreateAsync(Todo todo)
         {

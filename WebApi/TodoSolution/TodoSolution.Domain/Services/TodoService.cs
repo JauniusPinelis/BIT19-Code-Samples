@@ -15,7 +15,7 @@ namespace TodoSolution.Domain.Services
         }
 
 
-        public async Task<Todo> GetByIdAsync(int id)
+        public async Task<Todo> GetByIdAsync(string id)
         {
             var todo = await _todoRepository.GetByIdAsync(id);
             if (todo == null)
@@ -26,14 +26,14 @@ namespace TodoSolution.Domain.Services
             return todo;
         }
 
-        public async Task RemoveAsync(int id)
+        public async Task RemoveAsync(string id)
         {
             var todo = await GetByIdAsync(id);
 
             await _todoRepository.RemoveAsync(todo);
         }
 
-        public async Task<int> CreateAsync(CreateTodo createTodo)
+        public async Task<string> CreateAsync(CreateTodo createTodo)
         {
             var doesNameExist = await _todoRepository.DoesExist(createTodo.Name);
             if (doesNameExist)
@@ -43,7 +43,7 @@ namespace TodoSolution.Domain.Services
 
             var model = new Todo()
             {
-                Name = createTodo.Name
+                FullName = createTodo.Name
             };
 
             await _todoRepository.CreateAsync(model);

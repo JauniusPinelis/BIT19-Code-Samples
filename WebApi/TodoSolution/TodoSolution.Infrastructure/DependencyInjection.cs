@@ -11,7 +11,7 @@ namespace TodoSolution.Infrastructure
         public static void RegisterDatabase(this IServiceCollection serviceCollection, string connectionString)
         {
             serviceCollection.AddDbContext<DataContext>(d => d.UseSqlServer(connectionString));
-            serviceCollection.AddTransient<ITodoRepository, TodoRepository>();
+            serviceCollection.AddTransient<ITodoRepository, MongoTodoRepository>();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace TodoSolution.Domain.Interfaces
 {
     public interface ITodoRepository
     {
-        Task<Todo> GetByIdAsync(int id);
+        Task<Todo> GetByIdAsync(string id);
         Task<List<Todo>> GetAllAsync();
 
         Task<int> CreateAsync(Todo todo);
