@@ -1,0 +1,43 @@
+1. What is Object oriented Programming?
+2. What is Encapsulation?
+3. What is DRY? KISS? YAGNI ?
+4. What is Constructor?
+5. What does 'void' next to method mean?
+6. structure: public int[] countLines(string text)
+7. Access modifiers: public, private, protected, internal.
+8. What is inheritance in programming?
+https://stackoverflow.com/questions/11134832/inherit-from-two-classes-in-c-sharp
+9. What is Static method? (what is the difference from non-static)?
+10. what is Abstract class?
+11. How can override parent method? Override, virtual, (new)
+12. What is sealed?
+13. Where does Program start running? In which class? Program.cs
+14. Explain Dependency Injection. Transient vs Scoped vs Singleton
+15. Soa (Service oriented architecture).
+16. Extensions methods
+17. Passed by value vs passed by reference 
+https://stackoverflow.com/questions/29606475/c-sharp-pass-by-value-vs-pass-by-reference#:~:text=It%20is%20universally%20acknowledged%20(in,global%20scope%20is%20not%20affected.
+18. What is API?
+19. Api returns data with Status codes.
+What are those Status codes?
+20. int? (what does the question mark ? after type )
+Nullable 
+21. Explain asynchronous programming in c#?
+22. When should we use asynchronous functions?
+23. Generic types
+24. What is MVC?
+25. What are httpactions in rest? POST, PUT, DELETE, GET
+26. Why do we need interfaces?
+27. Who do we do with interfaces in tests?
+28. Unit tests vs Integration tests?
+29. what nugets are usefull/needed for testing?
+Moq, FluentAssertions, NUnit, Autofixture.
+30. What is AutoMapper? and why is it useful?
+31. What is Database and why we do need it?
+32. mssql is typed as Relational database? What does relational mean?
+32. Foreign key constraints?
+32.1 What is a join in sql
+33. Inner join vs left join vs right join
+https://4.bp.blogspot.com/-_HsHikmChBI/VmQGJjLKgyI/AAAAAAAAEPw/JaLnV0bsbEo/s1600/sql%2Bjoins%2Bguide%2Band%2Bsyntax.jpg
+34. Why do use EF CORE and not simple sql
+35. Ef Core Add vs Save
